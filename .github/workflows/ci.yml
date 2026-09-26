@@ -1,0 +1,27 @@
+name: Day7 CI
+ 
+on:
+  push:
+    branches:
+      - main
+      - feature/day7-devops
+ 
+jobs:
+  linux-check:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Show system information
+        run: |
+          echo "GitHub Actions CI is running"
+          uname -a
+          pwd
+          ls -la
+ 
+      - name: Check Day 7 file
+        run: |
+          test -f day7/README.md
+          echo "Day 7 file exists"
