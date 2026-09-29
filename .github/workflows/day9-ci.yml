@@ -24,7 +24,7 @@ jobs:
  
       - name: Run application
         run: |
-          python day9/missing.py
+          python day9/app.py
  
       - name: Create build artifact
         run: |
