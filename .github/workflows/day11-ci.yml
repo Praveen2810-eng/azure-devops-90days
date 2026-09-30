@@ -1,0 +1,43 @@
+name: Day11 CI and Artifact
+ 
+on:
+  push:
+    branches:
+      - main
+      - feature/day11-devops
+  pull_request:
+    branches:
+      - main
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+ 
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+ 
+      - name: Run tests
+        run: |
+          pytest day11/test_app.py
+ 
+      - name: Create build artifact
+        run: |
+          mkdir -p artifact
+          zip -j artifact/day11-app.zip day11/app.py
+ 
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: day11-app-artifact
+          path: artifact/day11-app.zip
