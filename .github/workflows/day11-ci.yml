@@ -41,3 +41,8 @@ jobs:
         with:
           name: day11-app-artifact
           path: artifact/day11-app.zip
+ 
+      - name: Deploy application
+        run: |
+          chmod +x day11/deploy.sh
+          ./day11/deploy.sh
