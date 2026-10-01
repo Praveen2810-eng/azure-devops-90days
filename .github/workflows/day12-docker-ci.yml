@@ -1,0 +1,26 @@
+name: Day12 Docker CI
+ 
+on:
+  push:
+    branches:
+      - main
+      - feature/day12-devops
+  pull_request:
+    branches:
+      - main
+ 
+jobs:
+  docker-build-test:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Build Docker image
+        run: |
+          docker build -t day12-app:1.1 ./day12
+ 
+      - name: Run Docker container
+        run: |
+          docker run --rm day12-app:1.1
